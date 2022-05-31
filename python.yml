@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+
+  python:
+    image: app-python:2.0
+    container_name: layx_python
+    build:
+      context: .
+      dockerfile: ./env/python/Dockerfile
+    command: tail -f /dev/null
+    environment:
+      - TZ=Asia/Taipei
+      - DEBIAN_FRONTEND=noninteractive
+      - PYTHONPATH=/usr/local/bin/python
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+    # swarm 設定
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.python == true]
+
+    working_dir: /app
+    networks:
+      - my_network
+     
+networks:
+  # swarm 內部網路溝通的名稱
+  my_network:
+    #river: overlay
+    # 在外面的網路名稱 , name property 只有3.5版本以後有提供
+    # name: my_network
+    # 加入已經存在的網路
+    external: true
