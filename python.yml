@@ -2,7 +2,7 @@ version: '3.5'
 services:
 
   python:
-    image: app-python:2.0
+    image: lay9412206/app-python:2.0
     container_name: layx_python
     build:
       context: .
