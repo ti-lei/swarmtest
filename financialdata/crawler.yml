@@ -1,9 +1,9 @@
 version: '3.0'
 services:
   crawler_twse:
-    image: linsamtw/crawler:7.2.1
+    image: lay9412206/app-py:2.0
     hostname: "twse"
-    command: pipenv run celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
+    command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
     restart: always
     # swarm 設定
     deploy:
@@ -17,9 +17,9 @@ services:
         - my_network
 
   crawler_tpex:
-    image: linsamtw/crawler:7.2.1
+    image: lay9412206/app-py:2.0
     hostname: "twse"
-    command: pipenv run celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
+    command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
     restart: always
     # swarm 設定
     deploy:

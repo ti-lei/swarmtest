@@ -19,3 +19,6 @@ deploy-crawler-scheduler:
 
 deploy-api:
 	docker stack deploy --with-registry-auth -c api/api.yml api
+
+sent-taiwan-stock-price-task:
+	python financialdata/producer.py taiwan_stock_price 2021-04-01 2021-04-12
