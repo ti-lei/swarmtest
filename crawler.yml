@@ -3,7 +3,7 @@ services:
   crawler_twse:
     image: lay9412206/app-py:2.0
     hostname: "twse"
-    command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
+    command: celery -A financialdata.financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
     restart: always
     # swarm 設定
     deploy:
@@ -19,7 +19,7 @@ services:
   crawler_tpex:
     image: lay9412206/app-py:2.0
     hostname: "twse"
-    command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
+    command: celery -A financialdata.financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
     restart: always
     # swarm 設定
     deploy:
