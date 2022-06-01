@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   crawler_twse:
-    image: lay9412206/app-py:2.0
+    image: lay9412206/app-python:2.0
     hostname: "twse"
     command: celery -A financialdata.financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
     restart: always
@@ -17,7 +17,7 @@ services:
         - my_network
 
   crawler_tpex:
-    image: lay9412206/app-py:2.0
+    image: lay9412206/app-python:2.0
     hostname: "twse"
     command: celery -A financialdata.financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
     restart: always
