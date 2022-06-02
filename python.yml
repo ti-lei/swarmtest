@@ -2,8 +2,9 @@ version: '3.5'
 services:
 
   python:
-    image: lay9412206/app-python:2.0
-    container_name: layx_python
+    #image: lay9412206/app-python:2.0
+    image: lay9412206/app-python:3.0
+    container_name: python
     build:
       context: .
       dockerfile: ./env/python/Dockerfile
@@ -23,7 +24,7 @@ services:
       placement:
         constraints: [node.labels.python == true]
 
-    working_dir: /app
+    working_dir: /app/financialdata
     networks:
       - my_network
      
