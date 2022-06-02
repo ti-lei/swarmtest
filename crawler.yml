@@ -13,6 +13,7 @@ services:
         constraints: [node.labels.crawler_twse == true]
     environment:
       - TZ=Asia/Taipei
+    working_dir: /app/financialdata
     networks:
         - my_network
 
@@ -29,6 +30,7 @@ services:
         constraints: [node.labels.crawler_tpex == true]
     environment:
       - TZ=Asia/Taipei
+    working_dir: /app/financialdata
     networks:
         - my_network
 
