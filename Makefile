@@ -12,10 +12,10 @@ deploy-portainer:
 	docker stack deploy --with-registry-auth -c portainer.yml por
 
 deploy-crawler:
-	docker stack deploy --with-registry-auth -c financialdata/crawler.yml financialdata
+	docker stack deploy --with-registry-auth -c crawler.yml financialdata
 
 deploy-crawler-scheduler:
-	docker stack deploy --with-registry-auth -c financialdata/scheduler.yml financialdata
+	docker stack deploy --with-registry-auth -c scheduler.yml financialdata
 
 deploy-api:
 	docker stack deploy --with-registry-auth -c api/api.yml api
