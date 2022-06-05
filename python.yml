@@ -3,7 +3,7 @@ services:
 
   python:
     #image: lay9412206/app-python:2.0
-    image: lay9412206/app-python:3.0
+    image: lay9412206/app-python:4.0
     container_name: python
     build:
       context: .
@@ -24,7 +24,7 @@ services:
       placement:
         constraints: [node.labels.python == true]
 
-    working_dir: /app/financialdata
+    working_dir: /app/Project
     networks:
       - my_network
      

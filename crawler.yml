@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   crawler_twse:
-    image: lay9412206/app-python:3.0
+    image: lay9412206/app-python:4.0
     hostname: "twse"
     command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
     restart: always
@@ -13,12 +13,11 @@ services:
         constraints: [node.labels.crawler_twse == true]
     environment:
       - TZ=Asia/Taipei
-    working_dir: /app/financialdata
     networks:
         - my_network
 
   crawler_tpex:
-    image: lay9412206/app-python:3.0
+    image: lay9412206/app-python:4.0
     hostname: "twse"
     command: celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q tpex
     restart: always
@@ -30,7 +29,6 @@ services:
         constraints: [node.labels.crawler_tpex == true]
     environment:
       - TZ=Asia/Taipei
-    working_dir: /app/financialdata
     networks:
         - my_network
 

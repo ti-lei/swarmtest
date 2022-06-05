@@ -1,20 +1,23 @@
 version: '3.0'
 services:
-  scheduler:
+  api:
     image: lay9412206/app-python:4.0
-    hostname: "twse"
-    command: python financialdata/scheduler.py
+    command: uvicorn api.main:app --reload --host 0.0.0.0 --port 8888
+    ports:
+        - 8888:8888
+    hostname: "api"
     restart: always
     # swarm 設定
     deploy:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.labels.scheduler == true]
-
+        constraints: [node.labels.api == true]
     environment:
       - TZ=Asia/Taipei
-    working_dir: /app/financialdata
+    networks:
+        - my_network
+
 networks:
   my_network:
     # 加入已經存在的網路
