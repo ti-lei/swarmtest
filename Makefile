@@ -18,4 +18,4 @@ deploy-crawler-scheduler:
 	docker stack deploy --with-registry-auth -c scheduler.yml financialdata
 
 deploy-api:
-	docker stack deploy --with-registry-auth -c api/api.yml api
+	docker stack deploy --with-registry-auth -c api.yml api
