@@ -3,10 +3,17 @@ services:
   api:
     image: lay9412206/app-python:4.0
     command: uvicorn api.main:app --reload --host 0.0.0.0 --port 8888
-    ports:
-        - 8888:8888
+    # ports:
+    #     - 8888:8888
     hostname: "api"
     restart: always
+    # LABEL:
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:layx.ddns.net"
+      - "traefik.basic.port=8080"
+      - "traefik.basic.protocol=http"
     # swarm 設定
     deploy:
       mode: replicated
@@ -16,9 +23,9 @@ services:
     environment:
       - TZ=Asia/Taipei
     networks:
-        - my_network
+        - traefik
 
 networks:
-  my_network:
+  traefik:
     # 加入已經存在的網路
     external: true
