@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.5"
 
 services:
 
@@ -60,14 +60,14 @@ services:
         order: stop-first
         failure_action: rollback
       placement:
-        max_replicas_per_node: 1
+        # max_replicas_per_node: 1
         constraints: [node.role == manager]
     networks:
         - traefik-public
 
 networks:
   traefik-public:
-    external: true
+    name: traefik-public
 
 volumes:
   letsencrypt:
